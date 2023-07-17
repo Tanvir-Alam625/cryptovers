@@ -3,6 +3,7 @@ import { useSidebarContext } from '@/contexts/sidebar-context';
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import Footer from './Footer';
+import Header from './Header';
 type Props = {
   title: string;
   children: React.ReactNode;
@@ -21,6 +22,7 @@ const PageWrapper = ({ title, children, className }: Props) => {
           isCollapsed ? 'lg:ms-20' : 'lg:ms-72'
         )}
       >
+        <Header />
         <div
           className="flex flex-col overflow-y-auto"
           style={{
