@@ -1,0 +1,33 @@
+.sidebar {
+  @apply fixed inset-y-0 z-20 flex h-screen w-72 flex-col overflow-hidden overflow-y-auto shadow-lg transition-all duration-300 ease-in-out bg-dark-800;
+
+  &__overlay {
+    @apply invisible fixed inset-0 z-10 bg-black opacity-50 transition-opacity duration-300 ease-in-out lg:hidden;
+  }
+
+  &__container {
+    @apply flex flex-grow flex-col overflow-x-hidden;
+
+    // hide scrollbar in Firefox
+    scrollbar-width: none;
+
+    // hide scrollbar in IE and Edge
+    -ms-overflow-style: none;
+
+    // hide scrollbar in Chrome
+    &::-webkit-scrollbar {
+      @apply hidden;
+    }
+
+    // hide scrollbar in Firefox
+    scrollbar-width: none;
+  }
+
+  &.collapsed {
+    @apply -translate-x-full lg:w-20 lg:translate-x-0;
+  }
+
+  &__overlay.show {
+    @apply visible;
+  }
+}

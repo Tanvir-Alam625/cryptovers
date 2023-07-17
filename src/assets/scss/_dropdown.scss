@@ -1,0 +1,26 @@
+@layer components {
+  .dropdown {
+    @apply relative;
+
+    &__content {
+      @apply overflow-hidden rounded-primary border bg-white shadow-lg dark:border-slate-800 dark:bg-slate-800;
+      animation: dropdown-animation 0.15s ease-in-out;
+    }
+
+    &__link,
+    &__item {
+      @apply flex w-full items-center px-4 py-2 text-left text-sm leading-5 text-slate-800 transition duration-150 ease-in-out hover:bg-slate-100 focus:outline-none dark:text-slate-300 dark:hover:bg-slate-700;
+    }
+
+    @keyframes dropdown-animation {
+      0% {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+}
