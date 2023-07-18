@@ -1,4 +1,4 @@
-import Button from '@/components/shared/Button';
+import { Button } from '@/components/shared';
 import { FallbackProps } from 'react-error-boundary';
 
 const ErrorFallback = ({ error }: FallbackProps) => {

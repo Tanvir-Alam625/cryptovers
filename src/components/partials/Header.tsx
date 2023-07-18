@@ -1,5 +1,5 @@
 import { useSidebarContext } from '@/contexts/sidebar-context';
-import SearchBox from '@/components/shared/SearchBox';
+import { SearchBox } from '@/components/shared';
 import { useState } from 'react';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';

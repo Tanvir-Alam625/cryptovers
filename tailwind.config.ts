@@ -4,10 +4,10 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 
 // Add your custom theme colors here
 const themeColors = {
-  primary: colors.violet,
+  primary: colors.fuchsia,
   secondary: colors.gray,
-  success: colors.emerald,
-  warning: colors.amber,
+  success: colors.green,
+  warning: colors.pink,
   danger: colors.rose,
   info: colors.indigo,
   dark: colors.slate,

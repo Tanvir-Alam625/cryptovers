@@ -8,7 +8,7 @@ type Props = {
 const AppLogo = ({ size = 40, className }: Props) => {
   return (
     <img
-      src="https://i.ibb.co/Z11pcGG/cryptocurrency.png"
+      src="/logo.png"
       alt="app-img"
       width={size}
       height={size}
