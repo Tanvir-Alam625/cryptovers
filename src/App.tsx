@@ -5,17 +5,21 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import ErrorFallback from './components/ErrorFallback';
 import { ThemeModeProvider } from './contexts/theme-mode-context';
+import { Provider } from 'react-redux';
+import { store } from '@/app/store';
 
 const App = () => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <HelmetProvider>
-        <ThemeModeProvider>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        </ThemeModeProvider>
-      </HelmetProvider>
+      <Provider store={store}>
+        <HelmetProvider>
+          <ThemeModeProvider>
+            <BrowserRouter>
+              <Router />
+            </BrowserRouter>
+          </ThemeModeProvider>
+        </HelmetProvider>
+      </Provider>
     </ErrorBoundary>
   );
 };

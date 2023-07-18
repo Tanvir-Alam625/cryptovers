@@ -6,15 +6,7 @@ type Props = {
 };
 
 const AppLogo = ({ size = 40, className }: Props) => {
-  return (
-    <img
-      src="/logo.png"
-      alt="app-img"
-      width={size}
-      height={size}
-      className={twMerge(className)}
-    />
-  );
+  return <img src="/logo.png" alt="app-img" width={size} height={size} className={twMerge(className)} />;
 };
 
 export default AppLogo;
