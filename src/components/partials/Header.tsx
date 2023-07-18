@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import { twMerge } from 'tailwind-merge';
+import ThemeSwitcher from './ThemeSwicher';
 const Header = () => {
   const { isCollapsed, setIsCollapsed } = useSidebarContext();
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
@@ -47,6 +48,7 @@ const Header = () => {
         >
           <FiSearch size={22} />
         </button>
+        <ThemeSwitcher />
         <button className="group relative flex items-center gap-1.5">
           <img
             src="/images/avatar.jpg"

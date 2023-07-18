@@ -1,8 +1,8 @@
 import AppLayout from '@/layouts/AppLayout';
 import { ConfigType } from '@/types';
 export const Config: ConfigType = {
-  appName: 'Admin Toolkit',
-  appDescription: 'Admin Toolkit - Admin Dashboard Template built with React, Typescript & Tailwind CSS',
+  appName: 'Cryptoverse',
+  appDescription: 'Cryptoverse - I created Cryptoverse App with React, TailwindCSS, and TypeScript',
   layouts: {
     default: AppLayout,
   },

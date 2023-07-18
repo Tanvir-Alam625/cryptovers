@@ -1,5 +1,5 @@
 .sidebar {
-  @apply fixed inset-y-0 z-20 flex h-screen w-72 flex-col overflow-hidden overflow-y-auto shadow-lg transition-all duration-300 ease-in-out bg-dark-800;
+  @apply fixed inset-y-0 z-20 flex h-screen w-72 flex-col overflow-hidden overflow-y-auto bg-white shadow-lg transition-all duration-300 ease-in-out dark:bg-slate-800;
 
   &__overlay {
     @apply invisible fixed inset-0 z-10 bg-black opacity-50 transition-opacity duration-300 ease-in-out lg:hidden;

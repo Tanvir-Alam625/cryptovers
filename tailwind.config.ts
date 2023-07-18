@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import colors from 'tailwindcss/colors';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 // Add your custom theme colors here
 const themeColors = {
@@ -13,10 +14,11 @@ const themeColors = {
 };
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,scss}'],
+  darkMode: 'class', // or 'false' or 'class'
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Poppins'],
+        sans: ['Poppins', ...defaultTheme.fontFamily.sans],
       },
       transitionProperty: {
         width: 'width',
@@ -36,7 +38,7 @@ export default {
         },
       },
       animation: {
-        'fade-in-up': 'fade-in-up 300ms ease-in-out',
+        'fade-in-up': 'fade-in-up 250ms ease-in-out',
       },
       colors: themeColors,
       variables: {
@@ -50,6 +52,7 @@ export default {
   plugins: [
     require('@tailwindcss/forms'),
     require('@mertasan/tailwindcss-variables'),
+    // require('tailwindcss-rtl'),
     require('@tailwindcss/typography'),
   ],
 } satisfies Config;

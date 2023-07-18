@@ -1,33 +1,33 @@
 .sidebar-menu {
-  @apply flex w-full items-center gap-2 rounded-primary p-1 text-sm transition-colors duration-150 hover:bg-primary-500 hover:text-dark-200;
+  @apply flex w-full items-center gap-2 rounded-primary p-1 text-sm transition-colors duration-150 hover:bg-primary-50 hover:text-primary-500 dark:hover:bg-primary-500 dark:hover:text-slate-200;
 
   &__icon {
-    @apply flex h-9 w-9 min-w-max flex-shrink-0 items-center justify-center  text-dark-400;
+    @apply flex h-9 w-9 min-w-max flex-shrink-0 items-center justify-center text-slate-500 dark:text-slate-400;
   }
 
   &__arrow {
-    @apply text-dark-600 me-2 ms-auto;
+    @apply text-slate-600 me-2 ms-auto;
   }
 
   &__submenu {
-    @apply block rounded-primary py-2 text-sm transition-colors duration-150 ps-12 hover:bg-primary-500  hover:text-dark-200;
+    @apply block rounded-primary py-2 text-sm transition-colors duration-150 ps-12 hover:bg-primary-50 hover:text-primary-500 dark:hover:bg-primary-500 dark:hover:text-slate-200;
   }
 
   &:hover &__icon,
   &:hover &__arrow {
-    @apply  text-dark-200;
+    @apply text-primary-500 dark:text-slate-200;
   }
 
   &.active {
-    @apply   bg-dark-700  text-dark-200;
+    @apply bg-primary-50 text-primary-500 dark:bg-slate-700 dark:text-slate-200;
   }
 
   &.active &__icon {
-    @apply rounded-primary  text-dark-200  bg-primary-500;
+    @apply rounded-primary bg-primary-500 text-slate-200 dark:bg-primary-500;
   }
 
   &.active &__arrow {
-    @apply  text-dark-200;
+    @apply text-primary-500 dark:text-slate-200;
   }
 
   &__submenu.active {

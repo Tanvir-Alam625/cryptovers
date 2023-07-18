@@ -11,6 +11,13 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
+  <!-- Set theme mode, language and app dir from local storage -->
+  <script>
+    const themeMode = localStorage.getItem('theme-mode');
+    if (themeMode) document.documentElement.classList.add(themeMode);
+    const dir = localStorage.getItem('dir');
+    if (dir) document.documentElement.setAttribute('dir', dir);
+  </script>
 </body>
 
 </html>

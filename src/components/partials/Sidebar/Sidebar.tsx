@@ -30,8 +30,9 @@ const Sidebar = () => {
             <AppLogo className="text-primary-500" />
             {isVisible ? (
               <div className="flex flex-col">
-                <h1 className="text-xl">
-                  <span className="font-semibold text-primary-500">Cryptoverse</span>
+                <h1 className="text-xl font-semibold uppercase text-dark-200">
+                  Crypto
+                  <span className="text-primary-500">verse</span>
                 </h1>
               </div>
             ) : null}
