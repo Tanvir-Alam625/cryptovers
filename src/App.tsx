@@ -7,6 +7,7 @@ import ErrorFallback from './components/ErrorFallback';
 import { ThemeModeProvider } from './contexts/theme-mode-context';
 import { Provider } from 'react-redux';
 import { store } from '@/app/store';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <HelmetProvider>
           <ThemeModeProvider>
             <BrowserRouter>
+              <Toaster position="top-center" />
               <Router />
             </BrowserRouter>
           </ThemeModeProvider>

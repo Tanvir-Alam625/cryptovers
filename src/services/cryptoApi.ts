@@ -17,6 +17,7 @@ const APIHeader: Header = {
 
 const baseURL = VITE_RAPID_API_URL;
 
+export type CryptoDataType = any;
 const createRequest = (url: string): OptionsType => ({ url, headers: APIHeader });
 
 export const cryptoApi = createApi({
@@ -24,7 +25,7 @@ export const cryptoApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
   endpoints: (builder) => ({
     getCryptos: builder.query<Array<any>, void>({
-      query: () => createRequest('/coins'),
+      query: () => createRequest(`/coins`),
     }),
   }),
 });

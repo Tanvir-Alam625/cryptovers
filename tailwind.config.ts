@@ -7,7 +7,7 @@ const themeColors = {
   primary: colors.fuchsia,
   secondary: colors.gray,
   success: colors.green,
-  warning: colors.pink,
+  warning: colors.yellow,
   danger: colors.rose,
   info: colors.indigo,
   dark: colors.slate,
