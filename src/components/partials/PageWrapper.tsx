@@ -4,6 +4,7 @@ import React from 'react';
 import { twMerge } from 'tailwind-merge';
 import Footer from './Footer';
 import Header from './Header';
+import SimpleBar from 'simplebar-react';
 type Props = {
   title: string;
   children: React.ReactNode;
@@ -23,8 +24,9 @@ const PageWrapper = ({ title, children, className }: Props) => {
         )}
       >
         <Header />
-        <div
-          className="flex flex-col overflow-y-auto"
+        <SimpleBar
+          autoHide={false}
+          className="custom-scrollbar-style flex flex-col overflow-y-auto"
           style={{
             height: 'calc(100vh - 4rem)',
           }}
@@ -33,7 +35,7 @@ const PageWrapper = ({ title, children, className }: Props) => {
             <div className={twMerge('mt-6', className)}>{children}</div>
           </main>
           <Footer />
-        </div>
+        </SimpleBar>
       </div>
     </>
   );

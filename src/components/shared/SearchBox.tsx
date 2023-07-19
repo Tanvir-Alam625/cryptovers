@@ -7,12 +7,13 @@ export interface Props {
   defaultValue?: string;
   className?: string;
   placeholder?: string;
+  value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
   input?: InputHTMLAttributes<HTMLInputElement>;
 }
 
-const SearchBox = ({ isFocused, defaultValue, className, placeholder, onChange, onKeyDown, input }: Props) => {
+const SearchBox = ({ isFocused, defaultValue, className, placeholder, onChange, onKeyDown, input, value }: Props) => {
   const element = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (isFocused && element.current) {
@@ -37,6 +38,7 @@ const SearchBox = ({ isFocused, defaultValue, className, placeholder, onChange, 
         placeholder={placeholder || 'Search'}
         type="text"
         defaultValue={defaultValue}
+        value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
         {...input}

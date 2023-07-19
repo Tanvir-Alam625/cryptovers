@@ -11,9 +11,9 @@ const menu: MenuType[] = [
     href: '/',
   },
   {
-    name: 'Cryptocurrencies',
+    name: 'Currencies',
     icon: AiOutlineLineChart,
-    href: '/cryptocurrencies',
+    href: '/currencies',
   },
   {
     name: 'Exchanges',

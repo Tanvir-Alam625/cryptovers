@@ -9,7 +9,7 @@ type PropsType = {
 
 const Currency = ({ coin, index }: PropsType) => {
   return (
-    <Card className="max-w-[300px]">
+    <Card className="max-w-[320px]">
       <Card.Body className="space-y-3">
         <div className="flex items-center justify-between">
           <Card.Title>

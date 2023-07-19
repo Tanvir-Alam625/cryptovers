@@ -13,6 +13,10 @@ import { LiaSalesforce } from 'react-icons/lia';
 import CountUp from 'react-countup';
 import millify from 'millify';
 import Currencies from '@/components/partials/Currencies/Currencies';
+import { useDispatch } from 'react-redux';
+import { clearSearchValue } from '@/app/slices/searchSlice';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export type CoinType = {
   '24hVolume': string;
@@ -34,22 +38,30 @@ export type CoinType = {
 };
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  const location = useLocation();
   const { data: cryptoData, isLoading, error, isFetching } = useGetCryptosQuery();
+
+  useEffect(() => {
+    dispatch(clearSearchValue());
+  }, [dispatch, location]);
+
   if (isLoading || isFetching) {
     return <Spinner />;
   }
+
   if (error) {
     toast.error("Couldn't Data fetch");
   }
+
   const { data } = cryptoData || ({} as CryptoDataType);
-  console.log(data.coins);
 
   return (
     <PageWrapper title="Home" className="space-y-4">
       <h2 className="mt-2">Global Crypto Stats</h2>
       {/* Stats  */}
       <div className="flex flex-wrap items-center gap-6">
-        <Card className="max-w-[300px]">
+        <Card className="max-w-[320px]">
           <Card.Body className="flex items-center gap-2">
             <div className="rounded-full bg-primary-500 bg-opacity-20 p-3">
               <PiCurrencyCircleDollarBold size={24} className="text-dark-500 dark:text-dark-200" />
@@ -70,7 +82,7 @@ const HomePage = () => {
             </div>
           </Card.Body>
         </Card>
-        <Card className="max-w-[300px]">
+        <Card className="max-w-[320px]">
           <Card.Body className="flex items-center gap-2">
             <div className="rounded-full bg-danger-500 bg-opacity-20 p-3">
               <LuFileVolume2 size={24} className="text-dark-500 dark:text-dark-200" />
@@ -89,7 +101,7 @@ const HomePage = () => {
             </div>
           </Card.Body>
         </Card>
-        <Card className="max-w-[300px]">
+        <Card className="max-w-[320px]">
           <Card.Body className="flex items-center gap-2">
             <div className="rounded-full bg-info-500 bg-opacity-20 p-3">
               <BiCoinStack size={24} className="text-dark-500 dark:text-dark-200" />
@@ -108,7 +120,7 @@ const HomePage = () => {
             </div>
           </Card.Body>
         </Card>
-        <Card className="max-w-[300px]">
+        <Card className="max-w-[320px]">
           <Card.Body className="flex items-center gap-2">
             <div className="rounded-full bg-warning-500 bg-opacity-20 p-3">
               <MdCurrencyExchange size={24} className="text-dark-500 dark:text-dark-200" />
@@ -127,7 +139,7 @@ const HomePage = () => {
             </div>
           </Card.Body>
         </Card>
-        <Card className="max-w-[300px]">
+        <Card className="max-w-[320px]">
           <Card.Body className="flex items-center gap-2">
             <div className="rounded-full bg-success-500 bg-opacity-20 p-3">
               <HiOutlineAcademicCap size={24} className="text-dark-500 dark:text-dark-200" />
@@ -146,7 +158,7 @@ const HomePage = () => {
             </div>
           </Card.Body>
         </Card>
-        <Card className="max-w-[300px]">
+        <Card className="max-w-[320px]">
           <Card.Body className="flex items-center gap-2">
             <div className="rounded-full bg-secondary-500 bg-opacity-20 p-3">
               <LiaSalesforce size={24} className="text-dark-500 dark:text-dark-200" />
@@ -166,7 +178,7 @@ const HomePage = () => {
           </Card.Body>
         </Card>
       </div>
-      <Currencies coins={data.coins.slice(0, 10)} />
+      <Currencies coins={data.coins.slice(0, 10)} sectionTitle="Top 10 Crypto Currencies" />
     </PageWrapper>
   );
 };
