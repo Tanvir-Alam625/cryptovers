@@ -8,10 +8,17 @@ import { MdOutlineCalculate, MdOutlinePriceChange } from 'react-icons/md';
 import { SiCoinmarketcap, SiMarketo } from 'react-icons/si';
 import { RiExchangeFundsFill } from 'react-icons/ri';
 import { IoMdTimer } from 'react-icons/io';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { BsCheck2Circle } from 'react-icons/bs';
 import { TbArrowsCross } from 'react-icons/tb';
 import { Card } from '@/components/shared';
+import HTMLReactParser from 'html-react-parser';
+
+type LinksType = {
+  name: string | undefined;
+  url: string | undefined;
+  type: string | undefined;
+};
 
 const CurrencyDetailsPage = () => {
   const { id } = useParams();
@@ -25,7 +32,7 @@ const CurrencyDetailsPage = () => {
   const stats = [
     {
       title: 'Price to USD',
-      value: `$ ${cryptoDetails?.price && millify(cryptoDetails?.price)}`,
+      value: `$ ${cryptoDetails?.price ? millify(cryptoDetails?.price) : 0}`,
       icon: <MdOutlinePriceChange size={18} />,
     },
     {
@@ -35,17 +42,17 @@ const CurrencyDetailsPage = () => {
     },
     {
       title: '24h Volume',
-      value: `$ ${cryptoDetails?.volume && millify(cryptoDetails?.volume)}`,
+      value: `$ ${cryptoDetails?.volume ? millify(cryptoDetails?.volume) : 0}`,
       icon: <FiVolume2 size={18} />,
     },
     {
       title: 'Market Cap',
-      value: `$ ${cryptoDetails?.marketCap && millify(cryptoDetails?.marketCap)}`,
+      value: cryptoDetails?.marketCap ? `$ ${millify(cryptoDetails?.marketCap)}` : undefined,
       icon: <SiCoinmarketcap size={18} />,
     },
     {
       title: 'All-time-high(daily avg.)',
-      value: `$ ${cryptoDetails?.allTimeHigh?.price && millify(cryptoDetails?.allTimeHigh?.price)}`,
+      value: cryptoDetails?.allTimeHigh?.price ? `$ ${millify(cryptoDetails?.allTimeHigh?.price)}` : undefined,
       icon: <IoMdTimer size={18} />,
     },
   ];
@@ -63,23 +70,23 @@ const CurrencyDetailsPage = () => {
     },
     {
       title: 'Aprroved Supply',
-      value: cryptoDetails?.supply?.confirmed,
+      value: cryptoDetails?.supply?.confirmed ? 'Yes' : 'No',
       icon: <LiaSellcast size={18} />,
     },
     {
       title: 'Total Supply',
-      value: `$ ${cryptoDetails?.supply?.total && millify(cryptoDetails?.supply?.total)}`,
+      value: cryptoDetails?.supply?.total ? `$ ${millify(cryptoDetails?.supply?.total)}` : false,
       icon: <LiaSellsy size={18} />,
     },
     {
       title: 'Circulating Supply',
-      value: `$ ${cryptoDetails?.supply?.circulating && millify(cryptoDetails?.supply?.circulating)}`,
+      value: cryptoDetails?.supply?.circulating ? `$ ${millify(cryptoDetails?.supply?.circulating)}` : false,
       icon: <MdOutlineCalculate size={18} />,
     },
   ];
 
   return (
-    <PageWrapper title="Currency Details" className="space-y-4">
+    <PageWrapper title="Currency Details" className="space-y-6">
       <h2 className="text-sm font-semibold">
         {cryptoDetails?.name}-({cryptoDetails?.symbol})
       </h2>
@@ -87,7 +94,7 @@ const CurrencyDetailsPage = () => {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <Card.Body className="space-y-4">
-            <div>
+            <div className="space-y-1">
               <h2 className="text-sm font-medium">{cryptoDetails.name} Value Statistics</h2>
               <p className="text-xs font-normal">An Overview Showing the stats of {cryptoDetails.name}</p>
             </div>
@@ -99,7 +106,7 @@ const CurrencyDetailsPage = () => {
                 >
                   <div className="flex items-center gap-2">
                     {item.icon}
-                    <p>{item.title}</p>
+                    <p className="text-sm font-normal">{item.title}</p>
                   </div>
                   <p className="font-medium">{item.value ? item.value : 'No Data Found'}</p>
                 </div>
@@ -109,7 +116,7 @@ const CurrencyDetailsPage = () => {
         </Card>
         <Card>
           <Card.Body className="space-y-4">
-            <div>
+            <div className="space-y-1">
               <h2 className="text-sm font-medium">Other Statistics</h2>
               <p className="text-xs font-normal">An Overview Showing the stats of all cryptocurrencies</p>
             </div>
@@ -121,12 +128,45 @@ const CurrencyDetailsPage = () => {
                 >
                   <div className="flex items-center gap-2">
                     {item.icon}
-                    <p>{item.title}</p>
+                    <p className="text-sm font-normal">{item.title}</p>
                   </div>
                   <p className="font-medium">{item.value ? item.value : 'No Data Found'}</p>
                 </div>
               );
             })}
+          </Card.Body>
+        </Card>
+      </div>
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <Card>
+          <Card.Body className="space-y-2">
+            <p className="text-sm font-medium">{cryptoDetails.name}</p>
+            <div className="text-sm font-normal">{HTMLReactParser(cryptoDetails.description)}</div>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Body className="space-y-2">
+            <p className="text-sm font-medium">{cryptoDetails.name} Links</p>
+            <div>
+              {cryptoDetails.links.length &&
+                cryptoDetails.links.map((item: LinksType, index: number) => {
+                  return (
+                    <div
+                      key={index}
+                      className="flex flex-wrap items-center justify-between border-b px-1 py-2 last:border-none  dark:border-dark-700 "
+                    >
+                      <p className="text-sm font-normal">{item.type || ''}</p>
+                      <Link
+                        to={item.url || ''}
+                        target="_blank"
+                        className=" animate-fade-in-up text-sm font-normal text-primary-500 hover:underline"
+                      >
+                        {item.name ? item.name : 'No Data Found'}
+                      </Link>
+                    </div>
+                  );
+                })}
+            </div>
           </Card.Body>
         </Card>
       </div>
