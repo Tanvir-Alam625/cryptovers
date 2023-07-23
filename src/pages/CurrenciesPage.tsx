@@ -5,18 +5,17 @@ import { CryptoDataType, useGetCryptosQuery } from '@/services/cryptoApi';
 import { toast } from 'react-hot-toast';
 
 const CurrenciesPage = () => {
-  const { data: cryptoData, isLoading, error, isFetching } = useGetCryptosQuery();
+  const { data: cryptoData, isLoading, error, isFetching, isError } = useGetCryptosQuery();
   if (isLoading || isFetching) {
     return <Spinner />;
   }
-  if (error) {
-    toast.error("Couldn't Data fetch");
-  }
+  if (isError || error) throw new Error('Server Error Please Reload');
   const { data } = cryptoData || ({} as CryptoDataType);
   return (
-    <PageWrapper title="Currencies">
+    <PageWrapper title="Currencies" className="space-y-4">
+      <h2 className="text-sm font-semibold">All Crypto Currencies</h2>
       <div className="flex flex-col gap-4">
-        <Currencies coins={data.coins} sectionTitle="All Crypto Currencies" />
+        <Currencies coins={data.coins} />
       </div>
     </PageWrapper>
   );

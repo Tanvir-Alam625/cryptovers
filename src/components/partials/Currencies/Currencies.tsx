@@ -6,10 +6,9 @@ import { RootState } from '@/app/store';
 
 type PropsType = {
   coins: CoinType[];
-  sectionTitle: string;
 };
 
-const Currencies = ({ coins, sectionTitle }: PropsType) => {
+const Currencies = ({ coins }: PropsType) => {
   const searchValue = useSelector((state: RootState) => state.search.searchValue);
   const [coinsData, setCoinsData] = useState<CoinType[]>([]);
   useEffect(() => {
@@ -27,7 +26,6 @@ const Currencies = ({ coins, sectionTitle }: PropsType) => {
   }, [coins, searchValue]);
   return (
     <>
-      <h2 className="mt-2">{sectionTitle}</h2>
       <div className="flex flex-wrap items-center gap-6">
         {coinsData.length
           ? coinsData.map((coin: CoinType, index: number) => <Currency key={index} index={index + 1} coin={coin} />)

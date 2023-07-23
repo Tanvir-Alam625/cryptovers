@@ -8,6 +8,7 @@ const Error404 = lazy(() => import('@/components/Error404'));
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const CurrenciesPage = lazy(() => import('@/pages/CurrenciesPage'));
+const CurrencyDetailsPage = lazy(() => import('@/pages/CurrencyDetailsPage'));
 
 type AppRoute = RouteObject & {
   layout?: LayoutType;
@@ -21,6 +22,10 @@ export const routes: AppRoute[] = [
   {
     path: '/currencies',
     element: <CurrenciesPage />,
+  },
+  {
+    path: '/currency/:id',
+    element: <CurrencyDetailsPage />,
   },
   {
     path: '*',

@@ -16,7 +16,7 @@ import Currencies from '@/components/partials/Currencies/Currencies';
 import { useDispatch } from 'react-redux';
 import { clearSearchValue } from '@/app/slices/searchSlice';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export type CoinType = {
   '24hVolume': string;
@@ -58,7 +58,7 @@ const HomePage = () => {
 
   return (
     <PageWrapper title="Home" className="space-y-4">
-      <h2 className="mt-2">Global Crypto Stats</h2>
+      <h2 className="text-sm font-semibold">Global Crypto Stats</h2>
       {/* Stats  */}
       <div className="flex flex-wrap items-center gap-6">
         <Card className="max-w-[320px]">
@@ -178,7 +178,15 @@ const HomePage = () => {
           </Card.Body>
         </Card>
       </div>
-      <Currencies coins={data.coins.slice(0, 10)} sectionTitle="Top 10 Crypto Currencies" />
+      <div className="space-y-4">
+        <div className="flex flex-wrap items-start justify-start gap-4 md:items-center md:justify-between">
+          <h2 className="text-sm font-semibold">Top 10 Crypto Currencies</h2>
+          <Link to="currencies" className="tex-sm pr-7  text-primary-500">
+            Show More
+          </Link>
+        </div>
+        <Currencies coins={data.coins.slice(0, 10)} />
+      </div>
     </PageWrapper>
   );
 };
