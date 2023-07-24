@@ -16,6 +16,9 @@ type ChartPropsType = {
   price: number;
 };
 
+type SeriesType = { name: string; data: number[] };
+type ChartDataType = { price: string; timestamp: number };
+
 const timePeriodOptions: SelectOption<string>[] = [
   { label: '3 Hours', value: '3h' },
   { label: '24 Hours', value: '24h' },
@@ -38,24 +41,36 @@ const AreaChart = ({ id, name, price }: ChartPropsType) => {
     coinId: id ? id : '',
     timePeriod: timePeriod.value,
   });
+
   if (isFetching) return <Spinner />;
+
   if (isError) throw new Error('server Error please reload');
+
   const handleTimePeriod = (selected: SelectOption<string> | null) => {
     if (selected) {
       setTimePeriod(selected);
     }
   };
 
-  const coinPrice: number[] = [];
-  const coinTimeStamps: string[] = [];
-  cryptoHistory?.data?.history.forEach((item: { price: string; timestamp: number }) => {
-    const price = parseFloat(item.price);
-    coinPrice.push(parseFloat(millify(price)));
-    coinTimeStamps.push(new Date(item.timestamp).toLocaleDateString());
-  });
-  const series: { name: string; data: number[] }[] = [{ name: 'Coin Price USD', data: coinPrice }];
-  console.log(series);
+  let maxDataPoints;
+  if (timePeriod.value === '3y' || timePeriod.value === '5y') {
+    maxDataPoints = 50;
+  }
 
+  const chartData: number[] =
+    cryptoHistory?.data?.history.map((item: ChartDataType) => parseFloat(millify(parseFloat(item.price)))) || [];
+
+  const chartCategories: string[] =
+    cryptoHistory?.data?.history.map((item: ChartDataType) => new Date(item.timestamp).toLocaleDateString()) || [];
+
+  const reduceCategories = maxDataPoints ? chartCategories.slice(-maxDataPoints) : chartCategories;
+  const reduceData = maxDataPoints ? chartData.slice(-maxDataPoints) : chartData;
+  const series: SeriesType[] = [
+    {
+      name: 'Coin Price USD',
+      data: reduceData,
+    },
+  ];
   // Series Toggle
   const toggleSeries = (seriesName: string) => {
     ApexCharts.exec(id, 'toggleSeries', seriesName);
@@ -132,7 +147,7 @@ const AreaChart = ({ id, name, price }: ChartPropsType) => {
             },
             colors: [themeColors.primary[500]],
             xaxis: {
-              categories: [...coinTimeStamps],
+              categories: reduceCategories,
               axisBorder: {
                 color: themeMode === ThemeMode.DARK ? themeColors.dark['600'] : themeColors.dark['300'],
               },
@@ -142,7 +157,7 @@ const AreaChart = ({ id, name, price }: ChartPropsType) => {
             },
             yaxis: {
               min: 0,
-              max: Math.max(...coinPrice) + 10,
+              max: Math.max(...reduceData) + 10,
               tickAmount: 10,
             },
             grid: {
