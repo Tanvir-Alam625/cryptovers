@@ -27,7 +27,7 @@ const timePeriodOptions: SelectOption<string>[] = [
   { label: '5 Years', value: '5y' },
 ];
 
-const LineChart = ({ id, name, price }: ChartPropsType) => {
+const AreaChart = ({ id, name, price }: ChartPropsType) => {
   const { themeMode } = useThemeMode();
   const [timePeriod, setTimePeriod] = useState<SelectOption<string>>(timePeriodOptions[0]);
   const {
@@ -161,4 +161,4 @@ const LineChart = ({ id, name, price }: ChartPropsType) => {
   );
 };
 
-export default LineChart;
+export default AreaChart;

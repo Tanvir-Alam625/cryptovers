@@ -10,7 +10,6 @@ type PropsType = {
 
 const Currency = ({ coin, index }: PropsType) => {
   const navigate = useNavigate();
-  console.log(coin);
   const handleNavigate = () => {
     navigate(`/currency/${coin.uuid}`);
   };

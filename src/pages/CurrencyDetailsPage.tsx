@@ -11,7 +11,7 @@ import { IoMdTimer } from 'react-icons/io';
 import { Link, useParams } from 'react-router-dom';
 import { Card } from '@/components/shared';
 import HTMLReactParser from 'html-react-parser';
-import LineChart from '@/components/partials/LineChart';
+import AreaChart from '@/components/partials/AreaChart';
 
 type LinksType = {
   name: string | undefined;
@@ -86,7 +86,7 @@ const CurrencyDetailsPage = () => {
         {cryptoDetails?.name}-({cryptoDetails?.symbol})
       </h2>
 
-      <LineChart name={cryptoDetails.name} id={id ? id : ''} price={cryptoDetails.price} />
+      <AreaChart name={cryptoDetails.name} id={id ? id : ''} price={cryptoDetails.price} />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <Card.Body className="space-y-4">
