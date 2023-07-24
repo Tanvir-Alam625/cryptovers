@@ -2,7 +2,6 @@ import Currencies from '@/components/partials/Currencies/Currencies';
 import PageWrapper from '@/components/partials/PageWrapper';
 import Spinner from '@/components/partials/Spinner';
 import { CryptoDataType, useGetCryptosQuery } from '@/services/cryptoApi';
-import { toast } from 'react-hot-toast';
 
 const CurrenciesPage = () => {
   const { data: cryptoData, isLoading, error, isFetching, isError } = useGetCryptosQuery();

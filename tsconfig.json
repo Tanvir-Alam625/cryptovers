@@ -18,7 +18,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@/root/*": ["./*"]
+      "@tailwind.config": ["tailwind.config.js"]
     }
   },
   "include": ["src/**/*"],

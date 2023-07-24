@@ -9,26 +9,21 @@ import { SiCoinmarketcap, SiMarketo } from 'react-icons/si';
 import { RiExchangeFundsFill } from 'react-icons/ri';
 import { IoMdTimer } from 'react-icons/io';
 import { Link, useParams } from 'react-router-dom';
-import { BsCheck2Circle } from 'react-icons/bs';
-import { TbArrowsCross } from 'react-icons/tb';
 import { Card } from '@/components/shared';
 import HTMLReactParser from 'html-react-parser';
+import LineChart from '@/components/partials/LineChart';
 
 type LinksType = {
   name: string | undefined;
   url: string | undefined;
   type: string | undefined;
 };
-
 const CurrencyDetailsPage = () => {
   const { id } = useParams();
   const { data, isFetching, isError } = useGetCryptoDetailsQuery(id || '');
   if (isFetching) return <Spinner />;
   if (isError) throw new Error('Server error');
   const cryptoDetails = data?.data?.coin;
-  console.log(cryptoDetails);
-  const time = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y'];
-
   const stats = [
     {
       title: 'Price to USD',
@@ -90,7 +85,8 @@ const CurrencyDetailsPage = () => {
       <h2 className="text-sm font-semibold">
         {cryptoDetails?.name}-({cryptoDetails?.symbol})
       </h2>
-      {/* chart Container  */}
+
+      <LineChart name={cryptoDetails.name} id={id ? id : ''} price={cryptoDetails.price} />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <Card.Body className="space-y-4">

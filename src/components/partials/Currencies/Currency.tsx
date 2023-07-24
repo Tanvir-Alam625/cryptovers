@@ -1,7 +1,7 @@
 import { Card } from '@/components/shared';
 import { CoinType } from '@/pages/HomePage';
 import millify from 'millify';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 type PropsType = {
   coin: CoinType;

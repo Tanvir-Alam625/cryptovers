@@ -8,6 +8,7 @@ type Header = Record<string, string>;
 type OptionsType = {
   headers?: Header;
   url: string;
+  options?: object;
 };
 
 const APIHeader: Header = {
@@ -18,22 +19,26 @@ const APIHeader: Header = {
 const baseURL = VITE_RAPID_API_URL;
 
 export type CryptoDataType = any;
-const createRequest = (url: string): OptionsType => ({ url, headers: APIHeader });
+const createRequest = (url: string, options: object): OptionsType => ({ url, options, headers: APIHeader });
 
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
   endpoints: (builder) => ({
     getCryptos: builder.query<Array<any>, void>({
-      query: () => createRequest(`/coins?limit=100`),
+      query: () => createRequest(`/coins?limit=100`, {}),
     }),
     getCryptoDetails: builder.query({
-      query: (id: string) => createRequest(`/coin/${id}`),
+      query: (id: string) => createRequest(`/coin/${id}`, {}),
+    }),
+    getCryptoHistory: builder.query({
+      query: ({ coinId, timePeriod }: { coinId: string; timePeriod: string }) =>
+        createRequest(`/coin/${coinId}/history`, { referenceCurrencyUuid: 'yhjMzLPhuIDl', timeperiod: timePeriod }),
     }),
   }),
 });
 
-export const { useGetCryptosQuery, useGetCryptoDetailsQuery } = cryptoApi;
+export const { useGetCryptosQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } = cryptoApi;
 
 // const options = {
 //   method: 'GET',

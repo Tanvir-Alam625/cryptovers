@@ -12,6 +12,10 @@ export type Radius = 'square' | 'rounded' | 'circle';
 export type AppRoute = RouteObject & {
   layout?: LayoutType;
 };
+export type SelectOption<T = string> = {
+  label: string;
+  value: T;
+};
 
 export type ConfigType = {
   appName: string;

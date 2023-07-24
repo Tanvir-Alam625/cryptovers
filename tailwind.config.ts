@@ -1,9 +1,11 @@
 import type { Config } from 'tailwindcss';
 import colors from 'tailwindcss/colors';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import tailwindForms from '@tailwindcss/forms';
+import tailwindTypography from '@tailwindcss/typography';
 
 // Add your custom theme colors here
-const themeColors = {
+export const themeColors = {
   primary: colors.fuchsia,
   secondary: colors.gray,
   success: colors.green,
@@ -12,14 +14,15 @@ const themeColors = {
   info: colors.indigo,
   dark: colors.slate,
 };
+
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx,scss}'],
+  content: ['./index.html', './src/**/*.{ts,tsx,css}'],
   darkMode: 'class', // or 'false' or 'class'
   theme: {
+    fontFamily: {
+      sans: ['Poppins', ...defaultTheme.fontFamily.sans],
+    },
     extend: {
-      fontFamily: {
-        sans: ['Poppins', ...defaultTheme.fontFamily.sans],
-      },
       transitionProperty: {
         width: 'width',
         height: 'height',
@@ -40,6 +43,9 @@ export default {
       animation: {
         'fade-in-up': 'fade-in-up 250ms ease-in-out',
       },
+      boxShadow: {
+        all: '0 0 0 3px rgba(0, 0, 0, 0.05), 0 3px 2px 0 rgba(0, 0, 0, 0.05)',
+      },
       colors: themeColors,
       variables: {
         DEFAULT: themeColors,
@@ -49,10 +55,5 @@ export default {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/forms'),
-    require('@mertasan/tailwindcss-variables'),
-    // require('tailwindcss-rtl'),
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [tailwindForms, tailwindTypography],
 } satisfies Config;
