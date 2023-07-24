@@ -142,7 +142,7 @@ const AreaChart = ({ id, name, price }: ChartPropsType) => {
             },
             yaxis: {
               min: 0,
-              max: Math.max(...coinPrice) + 20,
+              max: Math.max(...coinPrice) + 10,
               tickAmount: 10,
             },
             grid: {

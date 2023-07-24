@@ -19,7 +19,7 @@ const APIHeader: Header = {
 const baseURL = VITE_RAPID_API_URL;
 
 export type CryptoDataType = any;
-const createRequest = (url: string, options: object): OptionsType => ({ url, options, headers: APIHeader });
+const createRequest = (url: string, options: object): OptionsType => ({ url, ...options, headers: APIHeader });
 
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
@@ -33,7 +33,11 @@ export const cryptoApi = createApi({
     }),
     getCryptoHistory: builder.query({
       query: ({ coinId, timePeriod }: { coinId: string; timePeriod: string }) =>
-        createRequest(`/coin/${coinId}/history`, { referenceCurrencyUuid: 'yhjMzLPhuIDl', timeperiod: timePeriod }),
+        createRequest(`/coin/${coinId}/history`, {
+          params: {
+            timePeriod: timePeriod,
+          },
+        }),
     }),
   }),
 });
