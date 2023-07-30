@@ -39,7 +39,11 @@ export const cryptoApi = createApi({
           },
         }),
     }),
+    getExchanges: builder.query({
+      query: () => createRequest('/coin/Qwsogvtv82FCd/exchanges', {}),
+    }),
   }),
 });
 
-export const { useGetCryptosQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } = cryptoApi;
+export const { useGetCryptosQuery, useGetCryptoDetailsQuery, useGetCryptoHistoryQuery, useGetExchangesQuery } =
+  cryptoApi;
