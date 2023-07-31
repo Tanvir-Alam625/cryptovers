@@ -16,8 +16,6 @@ const ExchangesPage = () => {
   }
   const exchangesData = data?.data?.exchanges;
   type DataType = (typeof exchangesData)[0];
-  console.log(exchangesData);
-
   return (
     <PageWrapper title="Exchanges" className="space-y-4">
       <h2 className="text-sm font-medium">All Exchanges</h2>

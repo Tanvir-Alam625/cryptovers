@@ -15,7 +15,7 @@ const Currency = ({ coin, index }: PropsType) => {
   };
 
   return (
-    <div className="w-full md:w-[320px]" onClick={handleNavigate}>
+    <div onClick={handleNavigate}>
       <Card clickable>
         <Card.Body className="space-y-3">
           <div className="flex items-center justify-between">

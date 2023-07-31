@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 // Import environment variables
-const { VITE_RAPID_API_KEY, VITE_RAPID_API_HOST, VITE_RAPID_API_URL } = import.meta.env;
+const { VITE_RAPID_API_KEY } = import.meta.env;
 
 type Header = Record<string, string>;
 type OptionsType = {
@@ -13,19 +12,17 @@ type OptionsType = {
 
 const APIHeader: Header = {
   'X-RapidAPI-Key': VITE_RAPID_API_KEY,
-  'X-RapidAPI-Host': VITE_RAPID_API_HOST,
+  'X-RapidAPI-Host': 'coinranking1.p.rapidapi.com',
 };
 
-const baseURL = VITE_RAPID_API_URL;
-
-export type CryptoDataType = any;
+const baseURL = 'https://coinranking1.p.rapidapi.com';
 const createRequest = (url: string, options: object): OptionsType => ({ url, ...options, headers: APIHeader });
 
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
   baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
   endpoints: (builder) => ({
-    getCryptos: builder.query<Array<any>, void>({
+    getCryptos: builder.query({
       query: () => createRequest(`/coins?limit=100`, {}),
     }),
     getCryptoDetails: builder.query({

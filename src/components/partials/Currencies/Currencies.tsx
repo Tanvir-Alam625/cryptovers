@@ -9,7 +9,7 @@ type PropsType = {
 };
 
 const Currencies = ({ coins }: PropsType) => {
-  const searchValue = useSelector((state: RootState) => state.search.searchValue);
+  const searchValue = useSelector((state: RootState) => state?.search?.searchValue);
   const [coinsData, setCoinsData] = useState<CoinType[]>([]);
   useEffect(() => {
     if (!searchValue) {
@@ -26,7 +26,7 @@ const Currencies = ({ coins }: PropsType) => {
   }, [coins, searchValue]);
   return (
     <>
-      <div className="flex flex-wrap items-center gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {coinsData.length
           ? coinsData.map((coin: CoinType, index: number) => <Currency key={index} index={index + 1} coin={coin} />)
           : null}
