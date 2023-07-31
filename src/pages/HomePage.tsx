@@ -211,7 +211,7 @@ const HomePage = () => {
                   <h2 className="text-sm font-medium">{news.title}</h2>
                   <img src="images/thum.jpg" className="h-[200px] w-full rounded-primary" alt="news-img" />
 
-                  <p className="text-xs font-normal"> {HTMLReactParser(news.description)}</p>
+                  <span className="text-xs font-normal"> {HTMLReactParser(news.description)}</span>
                   <div className="flex items-center justify-between gap-2">
                     <img
                       src="images/user-thum.png"
