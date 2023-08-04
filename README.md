@@ -2,6 +2,9 @@
 
 The Crypto Info App is a ReactJS-based web application built using TypeScript, Tailwind CSS, Redux, and Vite as the bundler. The app provides real-time information about various cryptocurrencies, currencies, exchanges, and the latest crypto news by integrating with the Rapid API.
 
+![cryptoverse-thumbnail](https://github.com/Tanvir-Alam625/cryptovers/assets/72442289/2191c4ae-db48-46f3-a011-c40d6e4b61a3)
+
+
 ## Key Features
 
 1. **Collapsible Sidebar:** The app offers a collapsible sidebar for easy navigation and a clutter-free user interface.
